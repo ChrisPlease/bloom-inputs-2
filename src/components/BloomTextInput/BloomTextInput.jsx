@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import shortid from 'shortid';
 
 export class BloomTextInput extends Component {
 
@@ -50,6 +51,7 @@ export class BloomTextInput extends Component {
   }
 
   render() {
+    const id = shortid.generate();
     const {
       props,
       state,
@@ -65,8 +67,9 @@ export class BloomTextInput extends Component {
 
     return (
       <Fragment>
-        <label>{label}</label>
+        <label htmlFor={id}>{label}</label>
         <input
+          id={id}
           onChange={updateInput.bind(this)}
           onFocus={clearError.bind(this)}
           onBlur={() => validateString(input)}
@@ -74,7 +77,7 @@ export class BloomTextInput extends Component {
           placeholder={placeholder}
           value={input}
         />
-        {error && <span>{error}</span>}
+        {error && <span aria-live="assertive">{error}</span>}
       </Fragment>
     );
   }
