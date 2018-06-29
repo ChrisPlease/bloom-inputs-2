@@ -3,7 +3,7 @@ import isCurrency from 'validator/lib/isCurrency';
 import { BloomTextInput } from '../BloomTextInput';
 import { editChildProps } from '../../util';
 
-function withCurrency(WrappedComponent) {
+export function withCurrency(WrappedComponent) {
   return class Enhancer extends WrappedComponent {
 
     static propTypes = {...WrappedComponent.propTypes }
