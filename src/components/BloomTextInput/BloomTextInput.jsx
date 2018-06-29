@@ -28,7 +28,12 @@ export class BloomTextInput extends Component {
     label: 'Text input'
   }
 
-  state = { input: '', error: '' }
+  state = {
+    input: '',
+    error: '',
+    isTouched: false,
+    isValid: false
+  }
 
   updateInput(e) {
     const { value: input } = e.target;
