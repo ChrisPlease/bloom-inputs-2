@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import { Children, cloneElement } from 'react';
 
 export /**
  * Utility function that traverses a React Component tree to find
@@ -18,7 +18,7 @@ const editChildProps = (tree, qualifier, newProp) => {
       if (!child.props) return child;
 
       if (child.props.children) {
-        return React.cloneElement(
+        return cloneElement(
           child,
           child.props,
           editChildProps(child.props.children, qualifier, newProp)
@@ -26,7 +26,7 @@ const editChildProps = (tree, qualifier, newProp) => {
       }
 
       if (child[key] === val) {
-        return React.cloneElement(
+        return cloneElement(
           child,
           {...child.props, ...newProp}
         );
