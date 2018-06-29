@@ -5,6 +5,7 @@
   "main": "dist/index.min.js",
   "scripts": {
     "clean": "rm -rf dist/",
+    "prebuild": "yarn clean",
     "build": "rollup -c",
     "serve:styleguide": "styleguidist server -c ./styleguide.config.js"
   },
