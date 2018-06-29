@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 BloomButton.propTypes = {
@@ -7,7 +7,9 @@ BloomButton.propTypes = {
   /** Button text */
   content: PropTypes.string.isRequired,
   /** Click handler */
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  /** Classname applied to the button container */
+  className: PropTypes.string
 };
 
 BloomButton.defaultProps = {
@@ -16,11 +18,11 @@ BloomButton.defaultProps = {
 };
 
 /** @component */
-export function BloomButton({label, content, onClick}) {
+export function BloomButton({className, label, content, onClick}) {
   return (
-    <Fragment>
+    <div className={className}>
       {label && <label>{label}</label>}
       <button onClick={onClick}>{content}</button>
-    </Fragment>
+    </div>
   );
 }
