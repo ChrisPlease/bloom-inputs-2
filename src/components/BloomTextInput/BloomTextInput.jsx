@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 export class BloomTextInput extends Component {
 
-  state = { input: '', error: '' }
+  static displayName = 'BloomTextInput';
 
   static propTypes = {
     /** Input label */
-    label: PropTypes.string,
+    label: PropTypes.string.isRequired,
     /** Wrap the component in an optional `div` */
     wrap: PropTypes.bool,
     /** Error messaging: */
@@ -22,6 +22,12 @@ export class BloomTextInput extends Component {
     /** Maximum character length requirements */
     maxLength: PropTypes.number
   }
+
+  static defaultProps = {
+    label: 'Text input'
+  }
+
+  state = { input: '', error: '' }
 
   updateInput(e) {
     const { value: input } = e.target;
@@ -71,7 +77,6 @@ export class BloomTextInput extends Component {
         {error && <span>{error}</span>}
       </Fragment>
     );
-
   }
 }
 

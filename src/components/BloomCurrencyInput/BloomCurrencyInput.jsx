@@ -6,6 +6,8 @@ import { editChildProps } from '../../util';
 function withCurrency(WrappedComponent) {
   return class Enhancer extends WrappedComponent {
 
+    static propTypes = {...WrappedComponent.propTypes }
+
     validateCurrency(input) {
       return !isCurrency(input) ? this.setState({error: this.props.error.invalid}) : '';
     }

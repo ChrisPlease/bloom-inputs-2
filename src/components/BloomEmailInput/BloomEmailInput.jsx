@@ -6,6 +6,8 @@ import { editChildProps } from '../../util';
 function withEmail(WrappedComponent) {
   return class Enhancer extends WrappedComponent {
 
+    static displayName = `${WrappedComponent.displayName || WrappedComponent.name || 'Bloom'}EmailInput`;
+
     validateEmailString(input) {
       return !isEmail(input) ? this.setState({error: this.props.error.invalid}) : '';
     }
