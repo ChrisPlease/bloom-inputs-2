@@ -2,9 +2,9 @@
   "name": "bloom-inputs",
   "version": "0.0.1",
   "description": "A collection of simple inputs",
-  "main": "dist/index.min.js",
+  "main": "lib/index.js",
   "scripts": {
-    "clean": "rm -rf dist/",
+    "clean": "rm -rf lib/",
     "prebuild": "yarn clean",
     "build": "rollup -c",
     "serve:styleguide": "styleguidist server -c ./styleguide.config.js"

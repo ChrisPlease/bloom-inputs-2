@@ -10,17 +10,17 @@ const plugins = [
     exclude: 'node_modules/**',
     plugins: ['external-helpers', 'transform-class-properties']
   }),
-  resolve(),
+  resolve({browser: true}),
   commonjs({
     include: 'node_modules/**'
   }),
-  terser({mangle: {properties: true}})
+  // terser()
 ];
 
 const commonConfig = {
   output: {
     format: 'es',
-    // sourcemap: true
+    sourcemap: true
   },
   external: ['react', 'prop-types'],
   plugins
@@ -32,7 +32,7 @@ export default [
     input: 'src/index.js',
     output: {
       ...commonConfig.output,
-      file: 'dist/index.js'
+      file: 'lib/index.js'
     }
   },
   {
@@ -40,7 +40,7 @@ export default [
     input: sync('src/components/**/*.jsx').map(f => f),
     output: {
       ...commonConfig.output,
-      dir: 'dist'
+      dir: 'lib'
     },
     experimentalCodeSplitting: true
   }

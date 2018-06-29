@@ -26,4 +26,4 @@ export function withEmail(WrappedComponent) {
   }
 }
 
-export default BloomEmailInput = withEmail(BloomTextInput);
+export const BloomEmailInput = withEmail(BloomTextInput);

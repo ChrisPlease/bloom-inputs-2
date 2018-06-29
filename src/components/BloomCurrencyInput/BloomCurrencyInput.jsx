@@ -30,4 +30,4 @@ export function withCurrency(WrappedComponent) {
   }
 }
 
-export default BloomCurrencyInput = withCurrency(BloomTextInput);
+export const BloomCurrencyInput = withCurrency(BloomTextInput);

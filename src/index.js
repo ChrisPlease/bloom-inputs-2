@@ -1,9 +1,9 @@
 import { BloomButton } from './components/BloomButton';
-import { default as BloomCurrencyInput, withCurrency } from './components/BloomCurrencyInput';
-import { default as BloomEmailInput, withEmail } from './components/BloomEmailInput';
+import { BloomCurrencyInput, withCurrency } from './components/BloomCurrencyInput';
+import { BloomEmailInput, withEmail } from './components/BloomEmailInput';
 import { BloomTextInput } from './components/BloomTextInput';
 
-export default {
+export {
   BloomButton,
   BloomCurrencyInput,
   BloomEmailInput,
