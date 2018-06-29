@@ -4,8 +4,8 @@ BloomEmailInput Example:
 <BloomEmailInput 
   label="Email"
   placeholder="you@example.com"
-  error={{
-    invalid: 'This is not a valid email address'
-  }} 
+  validations={[
+    {message: 'Must be an email'}
+  ]}
 />
 ```

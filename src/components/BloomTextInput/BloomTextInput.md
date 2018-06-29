@@ -4,11 +4,16 @@ BloomTextInput Example:
 <BloomTextInput 
   label="Text Input"
   placeholder="Insert text here"
-  error={{
-    minLength: "Not enough characters",
-    maxLength: "Too many characters"
-  }}
-  minLength={3}
-  maxLength={10}
+  className="test"
+  validations={[
+    {
+      message: "Not enough characters",
+      test: (i) => i.length < 3
+    },
+    {
+      message: "Too many characters",
+      test: (i) => i.length > 10
+    }
+  ]}
 />
 ```

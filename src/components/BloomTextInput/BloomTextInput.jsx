@@ -12,16 +12,13 @@ export class BloomTextInput extends Component {
     /** Wrap the component in an optional `div` */
     wrap: PropTypes.bool,
     /** Error messaging: */
-    error: PropTypes.shape({
-      /** Error message when input does not meet length requirements */
-      minLength: PropTypes.string,
-      /** Error message when input exceeds length requirements */
-      maxLength: PropTypes.string
-    }),
-    /** Minimum character length requirements */
-    minLength: PropTypes.number,
-    /** Maximum character length requirements */
-    maxLength: PropTypes.number
+    validations: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        test: PropTypes.func,
+        message: PropTypes.string
+      })
+    )
   }
 
   static defaultProps = {
@@ -41,18 +38,26 @@ export class BloomTextInput extends Component {
   }
 
   clearError() {
-    this.setState({error: ''});
+    this.setState({ error: '', isTouched: false });
   }
 
   validateString = (input) => {
-    const { minLength, maxLength } = this.props;
-    const inputLength = input.length;
+    let error;
+    let newState = { ...this.state, isTouched: true };
+    const { validations } = this.props;
 
-    if (inputLength < minLength) {
-      this.setState({error: this.props.error.minLength});
-    } else if (inputLength > maxLength) {
-      this.setState({error: this.props.error.maxLength});
-    }
+    validations
+      .map(validation => {
+        if(validation.test(input)) {
+          console.log('test run!');
+          const error = validation.message;
+          newState = { ...newState, isValid: false, error };
+
+          return this.setState(newState);
+        }
+      });
+
+    this.setState(newState);
   }
 
   render() {
@@ -64,11 +69,18 @@ export class BloomTextInput extends Component {
       clearError,
       validateString,
     } = this;
+
     const {
       label,
       placeholder
     } = props;
-    const { input, error } = state;
+
+    const {
+      input,
+      error,
+      isValid,
+      isTouched
+    } = state;
 
     return (
       <Fragment>
@@ -82,7 +94,7 @@ export class BloomTextInput extends Component {
           placeholder={placeholder}
           value={input}
         />
-        {error && <span aria-live="assertive">{error}</span>}
+        {(!isValid && isTouched) && <span aria-live="assertive">{error}</span>}
       </Fragment>
     );
   }
