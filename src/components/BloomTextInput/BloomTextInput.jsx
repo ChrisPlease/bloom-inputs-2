@@ -7,6 +7,23 @@ class BloomTextInput extends Component {
 
   static displayName = 'BloomTextInput';
 
+  static propTypes = {
+    /** Input label */
+    label: PropTypes.string,
+    /** Placeholder text */
+    placeholder: PropTypes.string,
+    /** Error messaging: */
+    validations: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        test: PropTypes.func,
+        message: PropTypes.string
+      })
+    ),
+    /** Class applied to the entire component */
+    className: PropTypes.string
+  };
+
   static defaultProps = {
     label: 'Text input'
   }
@@ -56,7 +73,8 @@ class BloomTextInput extends Component {
 
     const {
       label,
-      placeholder
+      placeholder,
+      className
     } = props;
 
     const {
@@ -67,7 +85,7 @@ class BloomTextInput extends Component {
     } = state;
 
     return (
-      <Fragment>
+      <div className={`${className}${error ? ' error' : ''}`}>
         <label htmlFor={id}>{label}</label>
         <input
           id={id}
@@ -78,25 +96,10 @@ class BloomTextInput extends Component {
           placeholder={placeholder}
           value={input}
         />
-        {(!isValid && isTouched) && <span aria-live="assertive">{error}</span>}
-      </Fragment>
+        {(!isValid && isTouched) && <span className="error-msg" aria-live="assertive">{error}</span>}
+      </div>
     );
   }
 }
-
-BloomTextInput.propTypes = {
-  /** Input label */
-  label: PropTypes.string.isRequired,
-  /** Wrap the component in an optional `div` */
-  wrap: PropTypes.bool,
-  /** Error messaging: */
-  validations: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      test: PropTypes.func,
-      message: PropTypes.string
-    })
-  )
-};
 
 export default BloomTextInput;

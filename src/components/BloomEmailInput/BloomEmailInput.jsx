@@ -4,7 +4,6 @@ import isEmail from 'validator/lib/isEmail';
 import { BloomTextInput } from '../BloomTextInput';
 
 function withEmail(WrappedComponent) {
-
   return class Enhancer extends Component {
 
     render() {
@@ -13,9 +12,9 @@ function withEmail(WrappedComponent) {
       const props = {
         ...this.props,
         validations: validations
-          .map(val => {
-            return {...val, test: (i) => !isEmail(i)}
-          })
+        .map(val => {
+          return {...val, test: (i) => !isEmail(i)}
+        })
       };
       return <WrappedComponent {...props} />;
     }

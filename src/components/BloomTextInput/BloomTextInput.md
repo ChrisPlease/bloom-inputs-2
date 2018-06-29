@@ -4,7 +4,7 @@ BloomTextInput Example:
 <BloomTextInput 
   label="Text Input"
   placeholder="Insert text here"
-  className="test"
+  className="sample"
   validations={[
     {
       message: "Not enough characters",
