@@ -1,70 +1,27 @@
-import React, { Component, Children } from 'react';
-import PropTypes from 'prop-types';
-
 import isEmail from 'validator/lib/isEmail';
 
 import { BloomTextInput } from '../BloomTextInput';
-import { findChildByType } from '../../util';
+import { editChildProps } from '../../util';
 
 function withEmail(WrappedComponent) {
   return class Enhancer extends WrappedComponent {
 
-    // state = {
-    //   input: '',
-    //   error: ''
-    // }
-
-    // proc(instance) {
-    //   instance.validateString = this.validateEmailString;
-    //   console.log(instance.validateString('foo@foo.com'));
-    // }
+    static displayName = `${WrappedComponent.displayName || WrappedComponent.name || 'Bloom'}EmailInput`;
 
     validateEmailString(input) {
-      console.log(isEmail(input));
-      return !isEmail(input) ? this.setState({error: this.props.error}) : '';
-    }
-
-    traverseChildren (tree = super.render()) {
-      return Children.map(
-        tree,
-        (child) => {
-
-          const newProps = {
-            onBlur: () => {
-              isEmail(this.state.input) ?
-                alert('email is ok') :
-                alert('this is not an email')
-            }
-          };
-
-          if (!child.props) return child;
-
-          if (child.props.children) {
-            return React.cloneElement(child, {
-              props: child.props,
-              children: this.traverseChildren(child.props.children)
-            });
-          }
-
-          if (child.type === 'input') {
-            return React.cloneElement(child, {
-                props: {...child.props, ...newProps }
-              }
-            );
-          }
-        }
-      )
+      return !isEmail(input) ? this.setState({error: this.props.error.invalid}) : '';
     }
 
     render() {
       const elementTree = super.render();
-      const updatedInput = findChildByType(
+      const { input } = this.state;
+      const updatedInput = editChildProps(
         elementTree,
         {type: 'input'},
-        { onBlur: () => this.validateEmailString(this.state.input)}
+        {onBlur: () => this.validateEmailString(input)}
       );
 
-    return updatedInput;
+      return updatedInput;
     }
   }
 }
