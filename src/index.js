@@ -1,6 +1,6 @@
 import { BloomButton } from './components/BloomButton';
-import { BloomCurrencyInput } from './components/BloomCurrencyInput';
-import { BloomEmailInput } from './components/BloomEmailInput';
+import { default as BloomCurrencyInput, withCurrency } from './components/BloomCurrencyInput';
+import { default as BloomEmailInput, withEmail } from './components/BloomEmailInput';
 import { BloomTextInput } from './components/BloomTextInput';
 
 export default {
@@ -8,4 +8,8 @@ export default {
   BloomCurrencyInput,
   BloomEmailInput,
   BloomTextInput,
+
+  // HoC Factories
+  withCurrency,
+  withEmail
 }

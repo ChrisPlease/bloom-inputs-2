@@ -3,7 +3,7 @@ import isEmail from 'validator/lib/isEmail';
 import { BloomTextInput } from '../BloomTextInput';
 import { editChildProps } from '../../util';
 
-function withEmail(WrappedComponent) {
+export function withEmail(WrappedComponent) {
   return class Enhancer extends WrappedComponent {
 
     static displayName = `${WrappedComponent.displayName || WrappedComponent.name || 'Bloom'}EmailInput`;
@@ -26,4 +26,4 @@ function withEmail(WrappedComponent) {
   }
 }
 
-export const BloomEmailInput = withEmail(BloomTextInput);
+export default BloomEmailInput = withEmail(BloomTextInput);

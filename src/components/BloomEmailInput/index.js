@@ -1,1 +1,1 @@
-export { BloomEmailInput } from './BloomEmailInput.jsx';
+export { default, withEmail } from './BloomEmailInput.jsx';
