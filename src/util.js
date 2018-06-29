@@ -26,10 +26,19 @@ const editChildProps = (tree, qualifier, newProp) => {
       }
 
       if (child[key] === val) {
-        return cloneElement(
-          child,
-          {...child.props, ...newProp}
-        );
+        const hasChildren = !!child.props.children;
+
+        return hasChildren ?
+          cloneElement(
+            child,
+            {...child.props, ...newProp},
+            // continue traversing the tree if element has children
+            editChildProps(child.props.children, qualifier, newProp)
+          ) :
+          cloneElement(
+            child,
+            {...child.props, ...newProp}
+          );
       };
     }
   )
