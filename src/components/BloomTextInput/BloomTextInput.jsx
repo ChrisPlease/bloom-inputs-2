@@ -2,24 +2,10 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
-export class BloomTextInput extends Component {
+
+class BloomTextInput extends Component {
 
   static displayName = 'BloomTextInput';
-
-  static propTypes = {
-    /** Input label */
-    label: PropTypes.string.isRequired,
-    /** Wrap the component in an optional `div` */
-    wrap: PropTypes.bool,
-    /** Error messaging: */
-    validations: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string,
-        test: PropTypes.func,
-        message: PropTypes.string
-      })
-    )
-  }
 
   static defaultProps = {
     label: 'Text input'
@@ -98,3 +84,19 @@ export class BloomTextInput extends Component {
   }
 }
 
+BloomTextInput.propTypes = {
+  /** Input label */
+  label: PropTypes.string.isRequired,
+  /** Wrap the component in an optional `div` */
+  wrap: PropTypes.bool,
+  /** Error messaging: */
+  validations: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      test: PropTypes.func,
+      message: PropTypes.string
+    })
+  )
+};
+
+export default BloomTextInput;

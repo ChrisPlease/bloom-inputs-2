@@ -4,7 +4,7 @@ import isCurrency from 'validator/lib/isCurrency';
 import { BloomTextInput } from '../BloomTextInput';
 import { editChildProps } from '../../util';
 
-export function withCurrency(WrappedComponent) {
+function withCurrency(WrappedComponent) {
   return class Enhancer extends Component {
 
     render() {
@@ -22,4 +22,4 @@ export function withCurrency(WrappedComponent) {
   }
 }
 
-export const BloomCurrencyInput = withCurrency(BloomTextInput);
+export default BloomCurrencyInput = withCurrency(BloomTextInput);
