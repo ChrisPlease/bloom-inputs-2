@@ -44,12 +44,10 @@ export class BloomTextInput extends Component {
   validateString = (input) => {
     let error;
     let newState = { ...this.state, isTouched: true };
-    const { validations } = this.props;
 
-    validations
+    this.props.validations
       .map(validation => {
         if(validation.test(input)) {
-          console.log('test run!');
           const error = validation.message;
           newState = { ...newState, isValid: false, error };
 

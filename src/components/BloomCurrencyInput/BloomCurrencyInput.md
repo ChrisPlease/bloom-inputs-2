@@ -4,6 +4,10 @@ BloomCurrencyInput Example:
 <BloomCurrencyInput 
   label="Currency"
   placeholder="100"
-  validations={[]}
+  validations={[
+    {
+      message: 'This is not a valid currency'
+    }
+  ]}
 />
 ```

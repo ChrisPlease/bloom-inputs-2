@@ -5,7 +5,7 @@ import { BloomTextInput } from './components/BloomTextInput';
 
 export {
   BloomButton,
-  // BloomCurrencyInput,
+  BloomCurrencyInput,
   BloomEmailInput,
   BloomTextInput,
 

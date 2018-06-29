@@ -2,46 +2,22 @@ import React, { Component } from 'react';
 import isEmail from 'validator/lib/isEmail';
 
 import { BloomTextInput } from '../BloomTextInput';
-import { editChildProps } from '../../util';
 
 export function withEmail(WrappedComponent) {
+
   return class Enhancer extends Component {
 
-    constructor(props) {
-      super(props);
-
-      // props.validations = [
-      //   ...props.validations
-      //     .map(obj => {
-      //       return {...obj, test: (i) => isEmail(i)}
-      //     })
-      // ];
-    }
-
-    addEmailValidation(obj) {
-      return {...obj, test: (i) => isEmail(i)}
-    }
-
     render() {
-      const newProps = {
+      const {validations} = this.props;
+
+      const props = {
         ...this.props,
-        validations: [
-          ...this.props.validations
-            .map(
-              (obj) => {
-                return {
-                  ...obj,
-                  test: (i) => isEmail(i)
-                };
-              }
-            )
-        ]
+        validations: validations
+          .map(val => {
+            return {...val, test: (i) => !isEmail(i)}
+          })
       };
-
-      console.log(newProps);
-
-      const props = {...newProps};
-      return <WrappedComponent {...newProps} />;
+      return <WrappedComponent {...props} />;
     }
   }
 }
