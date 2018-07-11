@@ -14,7 +14,7 @@ const editChildProps = (tree, qualifier, newProp) => {
     tree,
     (child) => {
       const [key, val] = Object.entries(qualifier)[0];
-
+      if (!child) return;
       if (!child.props) return child;
 
       if (child.props.children) {

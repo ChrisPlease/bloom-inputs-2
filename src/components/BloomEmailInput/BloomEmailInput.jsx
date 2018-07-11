@@ -1,27 +1,22 @@
+import React, { Component } from 'react';
 import isEmail from 'validator/lib/isEmail';
 
 import { BloomTextInput } from '../BloomTextInput';
-import { editChildProps } from '../../util';
 
-export function withEmail(WrappedComponent) {
-  return class Enhancer extends WrappedComponent {
-
-    static displayName = `${WrappedComponent.displayName || WrappedComponent.name || 'Bloom'}EmailInput`;
-
-    validateEmailString(input) {
-      return !isEmail(input) ? this.setState({error: this.props.error.invalid}) : '';
-    }
+function withEmail(WrappedComponent) {
+  return class Enhancer extends Component {
 
     render() {
-      const elementTree = super.render();
-      const { input } = this.state;
-      const updatedInput = editChildProps(
-        elementTree,
-        {type: 'input'},
-        {onBlur: () => this.validateEmailString(input)}
-      );
+      const {validations} = this.props;
 
-      return updatedInput;
+      const props = {
+        ...this.props,
+        validations: validations
+        .map(val => {
+          return {...val, test: (i) => !isEmail(i)}
+        })
+      };
+      return <WrappedComponent {...props} />;
     }
   }
 }

@@ -1,1 +1,1 @@
-export { BloomTextInput } from './BloomTextInput.jsx';
+export { default as BloomTextInput } from './BloomTextInput.jsx';

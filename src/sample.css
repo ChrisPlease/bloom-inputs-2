@@ -1,0 +1,21 @@
+body {
+  font-family: sans-serif;
+}
+
+.sample label {
+  display: block;
+}
+
+.sample input {
+  height: 24px;
+  font-size: 16px;
+}
+
+.sample.error input {
+  border: 1px solid red;
+}
+
+.error-msg {
+  display: block;
+  color: red;
+}

@@ -1,1 +1,1 @@
-export { BloomCurrencyInput, withCurrency } from './BloomCurrencyInput.jsx';
+export { BloomCurrencyInput } from './BloomCurrencyInput.jsx';
